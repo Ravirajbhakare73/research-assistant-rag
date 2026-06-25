@@ -16,12 +16,10 @@ st.set_page_config(page_title=" Research Assistant", layout="wide")
 
 st.title("Research Paper Assistant")
 
-# ---------------- SIDEBAR UPLOAD ----------------
 st.sidebar.header(" Upload PDF")
 
 uploaded_file = st.sidebar.file_uploader("Upload your research paper", type="pdf")
 
-# ---------------- SESSION STATE ----------------
 if "initialized" not in st.session_state:
     st.session_state.initialized = False
 
@@ -41,7 +39,6 @@ def build_pipeline(pdf_path):
     return chunks, db, llm
 
 
-# ---------------- PROCESS PDF ----------------
 if uploaded_file is not None:
 
     with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
@@ -62,8 +59,6 @@ if uploaded_file is not None:
 
     st.success("Ready for Q&A!")
 
-
-# ---------------- QUERY UI ----------------
 query = st.text_input("Ask your question")
 
 if query:
